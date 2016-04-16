@@ -12,6 +12,10 @@ $items = [
     new SiteMapItem("http://example.com/foo", "2016-04-16", "monthly", 0.8),
     new SiteMapItem("http://example.com/bar", null, "always", 0.6)
 ];
+
+$collection = new SiteMapCollection($items);
+
+echo $collection->toXml();
 ```
 
 ### Output
