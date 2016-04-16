@@ -2,6 +2,13 @@
 
 Classes to model and generate an XML site map for use by web crawlers.
 
+## Composer
+```json
+"require": {
+    "mjp91/sitemap-generator ": "1.0.*"
+}
+```
+
 ## Example
 
 ### Usage
