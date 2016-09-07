@@ -2,7 +2,13 @@
 
 namespace SiteMap;
 
-
+/**
+ * Models an individual item in a site map
+ *
+ * Class SiteMapItem
+ * @package SiteMap
+ * @author Matthew Pearsall <mjp91@live.co.uk>
+ */
 class SiteMapItem
 {
     private $location;

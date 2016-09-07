@@ -2,7 +2,13 @@
 
 namespace SiteMap;
 
-
+/**
+ * Constructs a valid XML site map from an array of SiteMapItems
+ *
+ * Class SiteMapCollection
+ * @package SiteMap
+ * @author Matthew Pearsall <mjp91@live.co.uk>
+ */
 class SiteMapCollection
 {
     private $siteMapItems;

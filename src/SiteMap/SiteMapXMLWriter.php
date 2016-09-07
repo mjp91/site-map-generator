@@ -1,6 +1,12 @@
 <?php namespace SiteMap;
 
-
+/**
+ * Organises items in a site map into chunked files, generates an index referencing these chunked files
+ *
+ * Class SiteMapXMLWriter
+ * @package SiteMap
+ * @author Matthew Pearsall <mjp91@live.co.uk>
+ */
 class SiteMapXMLWriter
 {
     private $outputDir;
@@ -14,9 +20,9 @@ class SiteMapXMLWriter
 
     /**
      * SiteMapWriter constructor.
-     * @param string $outputDir
-     * @param $urlPrefix
-     * @param int $itemLimit
+     * @param string $outputDir - the directory the site map files should be generated in
+     * @param string $urlPrefix - the prefix to prepend to site map item URLs
+     * @param int $itemLimit - the amount of items per site map file
      * @throws \Exception
      */
     public function __construct($outputDir, $urlPrefix, $itemLimit = 10000)
@@ -35,6 +41,11 @@ class SiteMapXMLWriter
         $this->siteMapIndexGenerator = new SiteMapIndexXMLGenerator();
     }
 
+    /**
+     * Registers a site map item
+     *
+     * @param SiteMapItem $siteMapItem
+     */
     public function addItem(SiteMapItem $siteMapItem)
     {
         if ($this->currentItemCount == $this->itemLimit) {
@@ -45,6 +56,9 @@ class SiteMapXMLWriter
         $this->currentItemCount++;
     }
 
+    /**
+     * Completes the site map generation process by writing the last site map and the site map index
+     */
     public function finish()
     {
         if ($this->currentItemCount > 0) {
@@ -56,6 +70,11 @@ class SiteMapXMLWriter
         }
     }
 
+    /**
+     * Writes the current site map to a file and registers it with the indexer
+     *
+     * @throws \Exception
+     */
     private function writeCurrentSiteMap()
     {
         if ($this->currentItemCount == 0) {
@@ -73,6 +92,8 @@ class SiteMapXMLWriter
         fwrite($fh, $this->siteMapGenerator->generate());
         fclose($fh);
 
+        // construct a new instance as we're done with the previous site map
+        $this->siteMapGenerator = new SiteMapXMLGenerator();
 
         // add file name to list of created site maps
         $siteMapURL = $this->urlPrefix . '/' . $fileName;
@@ -85,6 +106,11 @@ class SiteMapXMLWriter
         $this->currentItemCount = 0;
     }
 
+    /**
+     * Writes the site map index to a file
+     *
+     * @throws \Exception
+     */
     private function writeSiteMapIndex()
     {
         if ($this->siteMapCount == 0) {

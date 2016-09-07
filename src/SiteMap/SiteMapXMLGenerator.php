@@ -1,5 +1,12 @@
 <?php namespace SiteMap;
 
+/**
+ * Generates a valid site map index in XML format
+ *
+ * Class SiteMapXMLGenerator
+ * @package SiteMap
+ * @author Matthew Pearsall <mjp91@live.co.uk>
+ */
 class SiteMapXMLGenerator implements SiteMapGenerator
 {
     private $urlSet;

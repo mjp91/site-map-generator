@@ -1,6 +1,12 @@
 <?php namespace SiteMap;
 
-
+/**
+ * Models a site map index
+ *
+ * Class SiteMapIndexItem
+ * @package SiteMap
+ * @author Matthew Pearsall <mjp91@live.co.uk>
+ */
 class SiteMapIndexItem
 {
     private $location;
