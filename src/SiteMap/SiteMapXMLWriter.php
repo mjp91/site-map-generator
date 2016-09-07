@@ -66,14 +66,13 @@ class SiteMapXMLWriter
         $fileName = "sitemap" . ($this->siteMapCount + 1) . ".xml";
         $fh = @fopen($this->outputDir . '/' . $fileName, 'w');
 
-        try {
-            if (!$fh) {
-                throw new \Exception("Unable to get handle on file {$fileName}");
-            }
-            fwrite($fh, $this->siteMapGenerator->generate());
-        } finally {
-            fclose($fh);
+        if (!$fh) {
+            throw new \Exception("Unable to get handle on file {$fileName}");
         }
+
+        fwrite($fh, $this->siteMapGenerator->generate());
+        fclose($fh);
+
 
         // add file name to list of created site maps
         $siteMapURL = $this->urlPrefix . '/' . $fileName;
@@ -95,14 +94,11 @@ class SiteMapXMLWriter
         $fileName = "sitemap.xml";
         $fh = @fopen($this->outputDir . '/' . $fileName, 'w');
 
-        try {
-            if (!$fh) {
-                throw new \Exception("Unable to get handle on file {$fileName}");
-            }
-
-            fwrite($fh, $this->siteMapIndexGenerator->generate());
-        } finally {
-            fclose($fh);
+        if (!$fh) {
+            throw new \Exception("Unable to get handle on file {$fileName}");
         }
+
+        fwrite($fh, $this->siteMapIndexGenerator->generate());
+        fclose($fh);
     }
 }
