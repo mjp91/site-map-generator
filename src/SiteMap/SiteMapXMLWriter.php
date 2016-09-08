@@ -107,7 +107,7 @@ class SiteMapXMLWriter
         // construct a new instance as we're done with the previous site map
         $this->siteMapGenerator = new SiteMapXMLGenerator();
 
-        // add file name to list of created site maps
+        // register site map with index
         $siteMapURL = $this->urlPrefix . '/' . $fileName;
         $now = new \DateTime();
         $this->siteMapIndexGenerator->addItem(new SiteMapIndexItem($siteMapURL, $now->format('c')));
