@@ -6,24 +6,25 @@ use SiteMap\SiteMapXMLWriter;
 
 class SiteMapXMLWriteTest extends TestCase
 {
-    private $outputDir;
+    const OUTPUT_DIR = '/tmp/sitemap';
+    const ITEM_LIMIT = 10000;
 
     /**
      * @var SiteMapXMLWriter $siteMapWriter
      */
     private $siteMapWriter;
 
+
     public function setUp()
     {
         parent::setUp();
-        $this->outputDir = '/tmp/sitemap';
-        $this->siteMapWriter = new SiteMapXMLWriter($this->outputDir, 'http://example.com', 10000);
+        $this->siteMapWriter = new SiteMapXMLWriter(self::OUTPUT_DIR, 'http://example.com', self::ITEM_LIMIT);
     }
 
     public function tearDown()
     {
         parent::tearDown();
-        $fileToDelete = glob($this->outputDir . '/sitemap*');
+        $fileToDelete = glob(self::OUTPUT_DIR . '/sitemap*');
         foreach ($fileToDelete as $file) {
             if (is_file($file)) {
                 unlink($file);
@@ -33,12 +34,19 @@ class SiteMapXMLWriteTest extends TestCase
 
     public function testFileCreation()
     {
+        $items = 50000;
+        $expectedSiteMaps = ceil($items / self::ITEM_LIMIT);
+
         for ($i = 0; $i < 50000; $i++) {
             $this->siteMapWriter->addItem(new SiteMapItem('http://example.com', '2016-09-07', '1.0', 'weekly'));
         }
 
-        $this->siteMapWriter->finish();
+        $this->siteMapWriter->writeSiteMapIndex();
 
-        $this->assertTrue(@file_exists($this->outputDir . '/sitemap.xml'));
+        for ($i = 1; $i <= $expectedSiteMaps; $i++) {
+            $this->assertFileExists(self::OUTPUT_DIR . "/sitemap{$i}.xml");
+        }
+
+        $this->assertFileExists(self::OUTPUT_DIR . '/sitemap.xml');
     }
 }

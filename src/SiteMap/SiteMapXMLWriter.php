@@ -48,26 +48,38 @@ class SiteMapXMLWriter
      */
     public function addItem(SiteMapItem $siteMapItem)
     {
+        $this->siteMapGenerator->addItem($siteMapItem);
+        $this->currentItemCount++;
+
         if ($this->currentItemCount == $this->itemLimit) {
             $this->writeCurrentSiteMap();
         }
-
-        $this->siteMapGenerator->addItem($siteMapItem);
-        $this->currentItemCount++;
     }
 
     /**
-     * Completes the site map generation process by writing the last site map and the site map index
+     * Writes the site map index to a file
+     *
+     * @throws \Exception
      */
-    public function finish()
+    public function writeSiteMapIndex()
     {
         if ($this->currentItemCount > 0) {
             $this->writeCurrentSiteMap();
         }
 
-        if ($this->siteMapCount > 0) {
-            $this->writeSiteMapIndex();
+        if ($this->siteMapCount == 0) {
+            throw new \Exception("No site maps to index");
         }
+
+        $fileName = "sitemap.xml";
+        $fh = @fopen($this->outputDir . '/' . $fileName, 'w');
+
+        if (!$fh) {
+            throw new \Exception("Unable to get handle on file {$fileName}");
+        }
+
+        fwrite($fh, $this->siteMapIndexGenerator->generate());
+        fclose($fh);
     }
 
     /**
@@ -104,27 +116,5 @@ class SiteMapXMLWriter
         $this->siteMapCount++;
         // reset the count
         $this->currentItemCount = 0;
-    }
-
-    /**
-     * Writes the site map index to a file
-     *
-     * @throws \Exception
-     */
-    private function writeSiteMapIndex()
-    {
-        if ($this->siteMapCount == 0) {
-            throw new \Exception("No site maps to index");
-        }
-
-        $fileName = "sitemap.xml";
-        $fh = @fopen($this->outputDir . '/' . $fileName, 'w');
-
-        if (!$fh) {
-            throw new \Exception("Unable to get handle on file {$fileName}");
-        }
-
-        fwrite($fh, $this->siteMapIndexGenerator->generate());
-        fclose($fh);
     }
 }
