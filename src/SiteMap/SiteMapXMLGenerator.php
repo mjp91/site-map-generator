@@ -1,7 +1,7 @@
 <?php namespace SiteMap;
 
 /**
- * Generates a valid site map index in XML format
+ * Generates a valid site map in XML format
  *
  * Class SiteMapXMLGenerator
  * @package SiteMap
