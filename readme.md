@@ -6,8 +6,10 @@ site map and the generation of a site map index. Each URL can be configured with
 
 ## Composer
 ```json
-"require": {
-    "mjp91/sitemap-generator": "1.1.*"
+{
+    "require": {
+        "mjp91/sitemap-generator": "1.2.*"
+    }
 }
 ```
 

@@ -18,7 +18,6 @@ class SiteMapXMLWriter
     private $siteMapGenerator;
     private $siteMapIndexGenerator;
     private $siteMapFileName;
-    private $siteMapGz;
 
     /**
      * SiteMapXMLWriter constructor.
@@ -26,7 +25,6 @@ class SiteMapXMLWriter
      * @param string $urlPrefix - the prefix to prepend to site map item URLs
      * @param int $itemLimit - the amount of items per site map file
      * @param string $siteMapFileName - filename to write files, no extension
-     * @param bool $siteMapGz - wiret sitemap as GZ compressed file
      * @throws \Exception
      */
     public function __construct($outputDir, $urlPrefix, $itemLimit = 10000, $siteMapFileName = "sitemap")

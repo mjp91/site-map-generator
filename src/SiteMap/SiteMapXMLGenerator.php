@@ -19,7 +19,6 @@ class SiteMapXMLGenerator implements SiteMapGenerator
         $this->urlSet = new \SimpleXMLElement("<?xml version=\"1.0\" encoding=\"UTF-8\"?><urlset></urlset>");
         $this->urlSet->addAttribute('xmlns:xmlns:xhtml', "http://www.w3.org/1999/xhtml");
         $this->urlSet->addAttribute('xmlns', "http://www.sitemaps.org/schemas/sitemap/0.9");
-
     }
 
     /**
@@ -44,15 +43,14 @@ class SiteMapXMLGenerator implements SiteMapGenerator
         }
 
         if ($item->getRelAlternates()) {
-            foreach($item->getRelAlternates() as $equivalent_k => $equivalent_v){
+            foreach ($item->getRelAlternates() as $equivalentKey => $equivalentValue) {
                 $link = $url->addChild('xmlns:xhtml:link');
                 $link->addAttribute('rel', 'alternate');
-                $link->addAttribute('hreflang', $equivalent_v['hreflang']);
-                $link->addAttribute('href', $equivalent_v['href']);
+                $link->addAttribute('hreflang', $equivalentValue['hreflang']);
+                $link->addAttribute('href', $equivalentValue['href']);
 
             }
         }
-
     }
 
     /**
