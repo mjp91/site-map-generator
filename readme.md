@@ -110,15 +110,13 @@ $siteMapWriter->addItem(new SiteMapItem("http://example.com"));
 // optional: add alternate links for specific language pages
 $item = new SiteMapItem("http://example.com/foo-bar");
 $item->addRelAlternate(array(
-                               "hreflang" => "en",
-                               "href" => "http://example.com/foo-bar"
-                           )
-                       );
+    "hreflang" => "en",
+    "href" => "http://example.com/foo-bar"
+));
 $item->addRelAlternate(array(
-                               "hreflang" => "de",
-                               "href" => "http://example.com/de/foo-bar"
-                           )
-                       );
+    "hreflang" => "de",
+    "href" => "http://example.com/de/foo-bar"
+));
 $siteMapWriter->addItem($item);
 
 // finish generation and write index file
