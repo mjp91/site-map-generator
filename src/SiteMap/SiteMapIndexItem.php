@@ -19,7 +19,7 @@ class SiteMapIndexItem
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getLocation()
     {
@@ -27,7 +27,7 @@ class SiteMapIndexItem
     }
 
     /**
-     * @param mixed $location
+     * @param string $location
      */
     public function setLocation($location)
     {
@@ -35,7 +35,7 @@ class SiteMapIndexItem
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getLastModified()
     {
@@ -43,7 +43,7 @@ class SiteMapIndexItem
     }
 
     /**
-     * @param mixed $lastModified
+     * @param string $lastModified
      */
     public function setLastModified($lastModified)
     {

@@ -35,7 +35,7 @@ class SiteMapItem
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getLocation()
     {
@@ -43,7 +43,7 @@ class SiteMapItem
     }
 
     /**
-     * @param mixed $location
+     * @param string $location
      */
     public function setLocation($location)
     {
@@ -51,7 +51,7 @@ class SiteMapItem
     }
 
     /**
-     * @return null
+     * @return string
      */
     public function getLastModified()
     {
@@ -59,7 +59,7 @@ class SiteMapItem
     }
 
     /**
-     * @param null $lastModified
+     * @param string $lastModified
      */
     public function setLastModified($lastModified)
     {
@@ -67,7 +67,7 @@ class SiteMapItem
     }
 
     /**
-     * @return null
+     * @return string
      */
     public function getChangeFrequency()
     {
@@ -75,7 +75,7 @@ class SiteMapItem
     }
 
     /**
-     * @param null $changeFrequency
+     * @param string $changeFrequency
      */
     public function setChangeFrequency($changeFrequency)
     {
@@ -83,7 +83,7 @@ class SiteMapItem
     }
 
     /**
-     * @return null
+     * @return float
      */
     public function getPriority()
     {
@@ -91,7 +91,7 @@ class SiteMapItem
     }
 
     /**
-     * @param null $priority
+     * @param float $priority
      */
     public function setPriority($priority)
     {
@@ -105,9 +105,8 @@ class SiteMapItem
      * 'hreflang' must be ISO_639-1: https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
      * 'href' must be full url including protocol and domain
      * @param array $alternative
-     * @return void
      */
-    function addRelAlternate(array $alternative)
+    public function addRelAlternate(array $alternative)
     {
         $this->relAlternates[] = $alternative;
     }
@@ -115,7 +114,7 @@ class SiteMapItem
     /**
      * @return array
      */
-    function getRelAlternates()
+    public function getRelAlternates()
     {
         return $this->relAlternates;
     }
