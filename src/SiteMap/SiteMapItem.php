@@ -15,6 +15,7 @@ class SiteMapItem
     private $lastModified;
     private $changeFrequency;
     private $priority;
+    private $relAlternates;
 
     /**
      * SiteMapItem constructor.
@@ -22,13 +23,15 @@ class SiteMapItem
      * @param $lastModified
      * @param $priority
      * @param $changeFrequency
+     * @param $equivalents
      */
-    public function __construct($location, $lastModified = null, $priority = null, $changeFrequency = null)
+    public function __construct($location, $lastModified = null, $priority = null, $changeFrequency = null, $relAlternates = array())
     {
         $this->location = $location;
         $this->lastModified = $lastModified;
         $this->priority = $priority;
         $this->changeFrequency = $changeFrequency;
+        $this->relAlternates = $relAlternates;
     }
 
     /**
@@ -94,4 +97,25 @@ class SiteMapItem
     {
         $this->priority = $priority;
     }
+
+    /**
+     * Add a rel alternate link for this item
+     * e.g. array("hreflang" => "de", "href" => "http://example.com/de/page");
+     * ref: https://support.google.com/webmasters/answer/2620865?hl=en&ref_topic=6080646
+     * 'hreflang' must be ISO_639-1: https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+     * 'href' must be full url including protocol and domain
+     * @return void
+     */
+    function addRelAlternate($alternate){
+        $this->relAlternates[] = $alternate;
+    }
+
+    /**
+     * @return array
+     */
+    function getRelAlternates(){
+        return $this->relAlternates;
+    }
+
+
 }

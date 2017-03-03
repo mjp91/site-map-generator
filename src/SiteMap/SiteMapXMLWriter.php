@@ -17,15 +17,19 @@ class SiteMapXMLWriter
     private $siteMapCount;
     private $siteMapGenerator;
     private $siteMapIndexGenerator;
+    private $siteMapFileName;
+    private $siteMapGz;
 
     /**
-     * SiteMapWriter constructor.
+     * SiteMapXMLWriter constructor.
      * @param string $outputDir - the directory the site map files should be generated in
      * @param string $urlPrefix - the prefix to prepend to site map item URLs
      * @param int $itemLimit - the amount of items per site map file
+     * @param string $siteMapFileName - filename to write files, no extension
+     * @param bool $siteMapGz - wiret sitemap as GZ compressed file
      * @throws \Exception
      */
-    public function __construct($outputDir, $urlPrefix, $itemLimit = 10000)
+    public function __construct($outputDir, $urlPrefix, $itemLimit = 10000, $siteMapFileName = "sitemap")
     {
         if (!is_dir($outputDir) || !is_writable($outputDir)) {
             throw new \Exception("{$outputDir} is not a directory/writable");
@@ -39,6 +43,7 @@ class SiteMapXMLWriter
         $this->siteMapCount = 0;
         $this->siteMapGenerator = new SiteMapXMLGenerator();
         $this->siteMapIndexGenerator = new SiteMapIndexXMLGenerator();
+        $this->siteMapFileName = $siteMapFileName;
     }
 
     /**
@@ -71,7 +76,7 @@ class SiteMapXMLWriter
             throw new \Exception("No site maps to index");
         }
 
-        $fileName = "sitemap.xml";
+        $fileName = $this->siteMapFileName . ".xml";
         $fh = @fopen($this->outputDir . '/' . $fileName, 'w');
 
         if (!$fh) {
@@ -94,7 +99,7 @@ class SiteMapXMLWriter
         }
 
         // create and write to site map
-        $fileName = "sitemap" . ($this->siteMapCount + 1) . ".xml";
+        $fileName = $this->siteMapFileName . ($this->siteMapCount + 1) . ".xml";
         $fh = @fopen($this->outputDir . '/' . $fileName, 'w');
 
         if (!$fh) {
