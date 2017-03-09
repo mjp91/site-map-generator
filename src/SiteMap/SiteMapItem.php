@@ -23,7 +23,7 @@ class SiteMapItem
      * @param $lastModified
      * @param $priority
      * @param $changeFrequency
-     * @param $equivalents
+     * @param array $relAlternates
      */
     public function __construct($location, $lastModified = null, $priority = null, $changeFrequency = null, $relAlternates = array())
     {
@@ -104,18 +104,19 @@ class SiteMapItem
      * ref: https://support.google.com/webmasters/answer/2620865?hl=en&ref_topic=6080646
      * 'hreflang' must be ISO_639-1: https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
      * 'href' must be full url including protocol and domain
+     * @param array $alternative
      * @return void
      */
-    function addRelAlternate($alternate){
-        $this->relAlternates[] = $alternate;
+    function addRelAlternate(array $alternative)
+    {
+        $this->relAlternates[] = $alternative;
     }
 
     /**
      * @return array
      */
-    function getRelAlternates(){
+    function getRelAlternates()
+    {
         return $this->relAlternates;
     }
-
-
 }

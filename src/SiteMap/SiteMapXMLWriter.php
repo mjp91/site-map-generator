@@ -18,7 +18,6 @@ class SiteMapXMLWriter
     private $siteMapGenerator;
     private $siteMapIndexGenerator;
     private $siteMapFileName;
-    private $siteMapGz;
 
     /**
      * SiteMapXMLWriter constructor.
@@ -26,13 +25,12 @@ class SiteMapXMLWriter
      * @param string $urlPrefix - the prefix to prepend to site map item URLs
      * @param int $itemLimit - the amount of items per site map file
      * @param string $siteMapFileName - filename to write files, no extension
-     * @param bool $siteMapGz - wiret sitemap as GZ compressed file
      * @throws \Exception
      */
     public function __construct($outputDir, $urlPrefix, $itemLimit = 10000, $siteMapFileName = "sitemap")
     {
-        if (!is_dir($outputDir) || !is_writable($outputDir)) {
-            throw new \Exception("{$outputDir} is not a directory/writable");
+        if (!is_dir($outputDir)) {
+            throw new \Exception("{$outputDir} is not a directory");
         }
 
         $this->outputDir = $outputDir;
@@ -80,7 +78,7 @@ class SiteMapXMLWriter
         $fh = @fopen($this->outputDir . '/' . $fileName, 'w');
 
         if (!$fh) {
-            throw new \Exception("Unable to get handle on file {$fileName}");
+            throw new \Exception("Unable to get handle on file {$fileName}, ensure it is writable");
         }
 
         fwrite($fh, $this->siteMapIndexGenerator->generate());
@@ -103,7 +101,7 @@ class SiteMapXMLWriter
         $fh = @fopen($this->outputDir . '/' . $fileName, 'w');
 
         if (!$fh) {
-            throw new \Exception("Unable to get handle on file {$fileName}");
+            throw new \Exception("Unable to get handle on file {$fileName}, ensure it is writable");
         }
 
         fwrite($fh, $this->siteMapGenerator->generate());
