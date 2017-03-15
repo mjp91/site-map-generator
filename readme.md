@@ -14,7 +14,7 @@ site map and the generation of a site map index. Each URL can be configured with
 ```
 
 ## Example
-###Singular
+### Singular
 #### Usage
 ```php
 $items = array(
@@ -49,7 +49,7 @@ echo $collection->toXml();
 </urlset>
 ```
 
-###Multiple
+### Multiple
 #### Usage
 ```php
 // configure output directory, URL prefix and URLs per site map
@@ -66,7 +66,7 @@ $siteMapWriter->writeSiteMapIndex();
 ```
 
 #### Output
-#####`/var/www/example.com/sitemap.xml`
+##### `/var/www/example.com/sitemap.xml`
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -77,7 +77,7 @@ $siteMapWriter->writeSiteMapIndex();
 </sitemapindex>
 ```
 
-#####`/var/www/example.com/sitemap1.xml`
+##### `/var/www/example.com/sitemap1.xml`
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -98,7 +98,7 @@ $siteMapWriter->writeSiteMapIndex();
 </urlset>
 ```
 
-###Using language annotations
+### Using language annotations
 #### Usage
 ```php
 // configure output directory, URL prefix and URLs per site map
@@ -124,7 +124,7 @@ $siteMapWriter->writeSiteMapIndex();
 ```
 
 #### Output
-#####`/var/www/example.com/sitemap.xml`
+##### `/var/www/example.com/sitemap.xml`
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -135,7 +135,7 @@ $siteMapWriter->writeSiteMapIndex();
 </sitemapindex>
 ```
 
-#####`/var/www/example.com/sitemap1.xml`
+##### `/var/www/example.com/sitemap1.xml`
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
